@@ -1,0 +1,22 @@
+# Constante 1 a 8 bit
+.model 1
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+.names O7
+
+.names O6
+
+.names O5
+
+.names O4
+1
+
+.names O3
+
+.names O2
+
+.names O1
+
+.names O0
+
+.end

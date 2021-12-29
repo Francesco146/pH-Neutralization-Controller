@@ -1,0 +1,27 @@
+# Constante 6.9375
+.model quasisette
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+.names O7
+
+.names O6
+1
+
+.names O5
+1
+
+.names O4
+
+.names O3
+1
+
+.names O2
+1
+
+.names O1
+1
+
+.names O0
+1
+
+.end
