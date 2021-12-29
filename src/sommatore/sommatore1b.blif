@@ -1,0 +1,24 @@
+# Sommatore a 1 bit
+#
+# Esegue la somma tra bit A e B (e il riporto in ingresso CIN).
+# O e' il risultato e COUT il riporto in uscita
+#
+
+.model sommatore1b
+.inputs A B CIN
+.outputs COUT O
+
+.names A B tmpO
+10 1
+01 1
+
+.names tmpO CIN O
+10 1
+01 1
+
+.names A B CIN COUT
+11- 1
+1-1 1
+-11 1
+
+.end
