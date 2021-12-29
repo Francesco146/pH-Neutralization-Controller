@@ -1,0 +1,19 @@
+### Visual Studio Code ###
+.vscode/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+### SIS ###
+sis/
+VR471618_VR471619.tar.gz
