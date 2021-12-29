@@ -2,26 +2,16 @@
 .model quasisette
 .outputs O7 O6 O5 O4 O3 O2 O1 O0
 
-.names O7
+.search costante/zero1b.blif
+.search costante/uno1b.blif
 
-.names O6
-1
-
-.names O5
-1
-
-.names O4
-
-.names O3
-1
-
-.names O2
-1
-
-.names O1
-1
-
-.names O0
-1
+.subckt zero1b O=O7 
+.subckt uno1b O=O6
+.subckt uno1b O=O5
+.subckt zero1b O=O4
+.subckt uno1b O=O3
+.subckt uno1b O=O2
+.subckt uno1b O=O1
+.subckt uno1b O=O0
 
 .end
