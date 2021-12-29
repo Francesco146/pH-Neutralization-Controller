@@ -1,0 +1,15 @@
+# Minore o uguale a 8 bit
+
+.model minoreuguale
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 
+.outputs O 
+
+# Importa e usa maggiore per vedere se A > B
+.search comparatore/maggiore.blif
+.subckt maggiore A7=A7 A6=A6 A5=A5 A4=A4 A3=A3 A2=A2 A1=A1 A0=A0 B7=B7 B6=B6 B5=B5 B4=B4 B3=B3 B2=B2 B1=B1 B0=B0 O=Z 
+
+# Nega il risultato
+.names Z O 
+0 1 
+ 
+.end
