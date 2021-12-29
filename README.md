@@ -5,3 +5,4 @@ Si progetti un circuito sequenziale che controlla un macchinario chimico il cui 
 ## Directory
 
 - `doc`: relazione dell'elaborato
+- `src`: componenti non ottimizzati
