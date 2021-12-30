@@ -1,0 +1,35 @@
+# SOTTRATTORE 8 BIT
+#
+# Esegue la sottrazione in complemento a 2 tra A e B.
+# O e' il risultato
+
+.model sottrattore
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0
+.outputs OVERFLOW O7 O6 O5 O4 O3 O2 O1 O0
+
+# Importa not a 1 bit e sommatore a 8 bit
+.search base/not1b.blif
+.search sommatore/sommatore.blif
+.search costante/zero1b.blif
+.search costante/uno1b.blif
+
+.subckt zero1b O=zero
+.subckt uno1b O=uno
+
+# Nega i bit di B
+.subckt not1b A=B0 O=INV0
+.subckt not1b A=B1 O=INV1
+.subckt not1b A=B2 O=INV2
+.subckt not1b A=B3 O=INV3
+.subckt not1b A=B4 O=INV4
+.subckt not1b A=B5 O=INV5
+.subckt not1b A=B6 O=INV6
+.subckt not1b A=B7 O=INV7
+
+# Somma 1 al negato di B
+.subckt sommatore CIN=zero A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=uno B7=INV7 B6=INV6 B5=INV5 B4=INV4 B3=INV3 B2=INV2 B1=INV1 B0=INV0 O7=COMP7 O6=COMP6 O5=COMP5 O4=COMP4 O3=COMP3 O2=COMP2 O1=COMP1 O0=COMP0
+
+# Somma A e il complemento 2 di B
+.subckt sommatore CIN=zero A7=A7 A6=A6 A5=A5 A4=A4 A3=A3 A2=A2 A1=A1 A0=A0 B7=COMP7 B6=COMP6 B5=COMP5 B4=COMP4 B3=COMP3 B2=COMP2 B1=COMP1 B0=COMP0 O7=O7 O6=O6 O5=O5 O4=O4 O3=O3 O2=O2 O1=O1 O0=O0 COUT=OVERFLOW
+
+.end
