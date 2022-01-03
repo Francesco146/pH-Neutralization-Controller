@@ -1,12 +1,13 @@
 .model datapath
 .inputs START VALVOLA_ACIDO VALVOLA_BASICO pH_in7 pH_in6 pH_in5 pH_in4 pH_in3 pH_in2 pH_in1 pH_in0
-# ... NCLK7 NCLK6 NCLK5 NCLK4 NCLK3 NCLK2 NCLK1 NCLK0
-.outputs FINE pH_out7 pH_out6 pH_out5 pH_out4 pH_out3 pH_out2 pH_out1 pH_out0
+.outputs FINE pH_out7 pH_out6 pH_out5 pH_out4 pH_out3 pH_out2 pH_out1 pH_out0 nclk_out7 nclk_out6 nclk_out5 nclk_out4 nclk_out3 nclk_out2 nclk_out1 nclk_out0
 
 # Importo il mux e la costante 0
 .search multiplexer/mux2i.blif
 .search costante/zero1b.blif
+.search costante/uno1b.blif
 .subckt zero1b O=zero
+.subckt uno1b O=uno
 
 # Mux per start
 .subckt mux2i S=START A7=pH_out7 A6=pH_out6 A5=pH_out5 A4=pH_out4 A3=pH_out3 A2=pH_out2 A1=pH_out1 A0=pH_out0 B7=pH_in7 B6=pH_in6 B5=pH_in5 B4=pH_in4 B3=pH_in3 B2=pH_in2 B1=pH_in1 B0=pH_in0 O7=mux_start7 O6=mux_start6 O5=mux_start5 O4=mux_start4 O3=mux_start3 O2=mux_start2 O1=mux_start1 O0=mux_start0
@@ -45,5 +46,17 @@
 .search base/and1b.blif
 .subckt and1b A=min_uguale B=mag_uguale O=FINE
 ## Fine controllo
+
+## Contatore cicli clock
+.search sommatore/sommatore.blif
+.subckt sommatore CIN=zero A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=uno B7=nclk_out7 B6=nclk_out6 B5=nclk_out5 B4=nclk_out4 B3=nclk_out3 B2=nclk_out2 B1=nclk_out1 B0=nclk_out0 O7=nuovo_NCLK7 O6=nuovo_NCLK6 O5=nuovo_NCLK5 O4=nuovo_NCLK4 O3=nuovo_NCLK3 O2=nuovo_NCLK2 O1=nuovo_NCLK1 O0=nuovo_NCLK0
+
+.subckt mux2i S=FINE A7=nuovo_NCLK7 A6=nuovo_NCLK6 A5=nuovo_NCLK5 A4=nuovo_NCLK4 A3=nuovo_NCLK3 A2=nuovo_NCLK2 A1=nuovo_NCLK1 A0=nuovo_NCLK0 B7=nclk_out7 B6=nclk_out6 B5=nclk_out5 B4=nclk_out4 B3=nclk_out3 B2=nclk_out2 B1=nclk_out1 B0=nclk_out0  O7=mux_fine_nclk7 O6=mux_fine_nclk6 O5=mux_fine_nclk5 O4=mux_fine_nclk4 O3=mux_fine_nclk3 O2=mux_fine_nclk2 O1=mux_fine_nclk1 O0=mux_fine_nclk0
+
+.subckt mux2i S=START A7=mux_fine_nclk7 A6=mux_fine_nclk6 A5=mux_fine_nclk5 A4=mux_fine_nclk4 A3=mux_fine_nclk3 A2=mux_fine_nclk2 A1=mux_fine_nclk1 A0=mux_fine_nclk0 B7=zero B6=zero B5=zero B4=zero B3=zero B2=zero B1=zero B0=zero O7=mux_start_nclk7 O6=mux_start_nclk6 O5=mux_start_nclk5 O4=mux_start_nclk4 O3=mux_start_nclk3 O2=mux_start_nclk2 O1=mux_start_nclk1 O0=mux_start_nclk0
+
+.search registro/registro.blif
+.subckt registro I7=mux_start_nclk7 I6=mux_start_nclk6 I5=mux_start_nclk5 I4=mux_start_nclk4 I3=mux_start_nclk3 I2=mux_start_nclk2 I1=mux_start_nclk1 I0=mux_start_nclk0 O7=nclk_out7 O6=nclk_out6 O5=nclk_out5 O4=nclk_out4 O3=nclk_out3 O2=nclk_out2 O1=nclk_out1 O0=nclk_out0
+## Fine contatore
 
 .end
