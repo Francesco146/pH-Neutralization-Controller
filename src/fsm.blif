@@ -1,5 +1,5 @@
 .model fsm
-.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath
 .outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO START_datapath
 
 .start_kiss

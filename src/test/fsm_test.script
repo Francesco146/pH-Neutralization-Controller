@@ -1,6 +1,6 @@
 read_blif ../fsm.blif
 
-# inputs: RESET START pH7 Ph6 Ph5 Ph4 Ph3 Ph2 Ph1 Ph0 FINE
+# inputs: RESET START pH7 Ph6 Ph5 Ph4 Ph3 Ph2 Ph1 Ph0 FINE_datapath
 # outputs: FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO STAR_datapath
 
 # Accendo il Circuito
