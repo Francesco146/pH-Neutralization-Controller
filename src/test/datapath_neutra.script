@@ -1,0 +1,18 @@
+read_blif datapath.blif
+
+# inputs: START ACIDIFICA BASIFICA phI7 phI6 phI5 phI4 phI3 phI2 phI1 phI0
+
+sim 1 0 0 0 0 0 0 0 0 0 0 # gli 0 sarebbero DC, tanto RESET ha la precedenza
+echo RESET
+echo --------------------
+
+sim 1 0 0 0 1 1 1 1 0 0 0
+echo START a 7.5 (soluzione neutra)
+echo niente (7.5>7.5)
+echo --------------------
+
+sim 0 0 0 0 0 0 0 0 0 0 0 # phI a DC
+sim 0 0 0 0 0 0 0 0 0 0 0 # phI a DC
+echo fine, END a 1 (7.5>7.5)
+echo NB: l output rimane uguale
+echo --------------------

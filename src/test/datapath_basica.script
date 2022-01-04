@@ -1,0 +1,26 @@
+read_blif datapath.blif
+
+# inputs: START ACIDIFICA BASIFICA phI7 phI6 phI5 phI4 phI3 phI2 phI1 phI0
+
+sim 1 0 0 0 0 0 0 0 0 0 0 # setto il registro a 0
+echo RESET
+echo --------------------
+
+sim 1 1 0 1 0 0 1 1 0 0 0
+echo START a 9.5 (soluzione basica)
+echo acidifica (9.5 > 9.0)
+echo --------------------
+
+sim 0 1 0 0 0 0 0 0 0 0 0 # pompo acido, phI a DC
+echo acidifica (9.0>8.5)
+echo --------------------
+
+sim 0 1 0 0 0 0 0 0 0 0 0 # pompo acido, phI a DC
+echo acidifica (8.5>8.0)
+echo --------------------
+
+sim 0 0 0 0 0 0 0 0 0 0 0 # phI a DC
+sim 0 0 0 0 0 0 0 0 0 0 0 # phI a DC
+echo fine, END a 1 (8.0>8.0)
+echo NB: l output rimane uguale
+echo --------------------
