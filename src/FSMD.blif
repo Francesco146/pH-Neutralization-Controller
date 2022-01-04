@@ -3,15 +3,15 @@
 .outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO PH_FINALE7 PH_FINALE6 PH_FINALE5 PH_FINALE4 PH_FINALE3 PH_FINALE2 PH_FINALE1 PH_FINALE0  NCLK7 NCLK6 NCLK5 NCLK4 NCLK3 NCLK2 NCLK1 NCLK0
 
 .search datapath.blif
-.subckt datapath START=START_datapath VALVOLA_ACIDO=VALVOLA_ACIDO VALVOLA_BASICO=VALVOLA_BASICO pH_in7=pH7 pH_in6=pH6 pH_in5=pH5 pH_in4=pH4 pH_in3=pH3 pH_in2=pH2 pH_in1=pH1 pH_in0=pH0 END=END_datapath pH_out7=PH_FINALE7 pH_out6=PH_FINALE6 pH_out5=PH_FINALE5 pH_out4=PH_FINALE4 pH_out3=PH_FINALE3 pH_out2=PH_FINALE2 pH_out1=PH_FINALE1 pH_out0=PH_FINALE0 nclk_out7=NCLK_datapath7 nclk_out6=NCLK_datapath6 nclk_out5=NCLK_datapath5 nclk_out4=NCLK_datapath4 nclk_out3=NCLK_datapath3 nclk_out2=NCLK_datapath2 nclk_out1=NCLK_datapath1 nclk_out0=NCLK_datapath0
+.subckt datapath START=START_datapath VALVOLA_ACIDO=VALVOLA_ACIDO VALVOLA_BASICO=VALVOLA_BASICO pH_in7=pH7 pH_in6=pH6 pH_in5=pH5 pH_in4=pH4 pH_in3=pH3 pH_in2=pH2 pH_in1=pH1 pH_in0=pH0 FINE=FINE_datapath pH_out7=pH_datapath7 pH_out6=pH_datapath6 pH_out5=pH_datapath5 pH_out4=pH_datapath4 pH_out3=pH_datapath3 pH_out2=pH_datapath2 pH_out1=pH_datapath1 pH_out0=pH_datapath0 nclk_out7=NCLK_datapath7 nclk_out6=NCLK_datapath6 nclk_out5=NCLK_datapath5 nclk_out4=NCLK_datapath4 nclk_out3=NCLK_datapath3 nclk_out2=NCLK_datapath2 nclk_out1=NCLK_datapath1 nclk_out0=NCLK_datapath0
 
 .search fsm.blif
-.subckt fsm RST=RST START=START pH7=pH7 pH6=pH6 pH5=pH5 pH4=pH4 pH3=pH3 pH2=pH2 pH1=pH1 pH0=pH0 FINE_datapath=END_datapath FINE_OPERAZIONE=FINE_OPERAZIONE ERRORE_SENSORE=ERRORE_SENSORE VALVOLA_ACIDO=VALVOLA_ACIDO VALVOLA_BASICO=VALVOLA_BASICO START_datapath=START_datapath
+.subckt fsm RST=RST START=START pH7=pH7 pH6=pH6 pH5=pH5 pH4=pH4 pH3=pH3 pH2=pH2 pH1=pH1 pH0=pH0 FINE_datapath=FINE_datapath FINE_OPERAZIONE=FINE_OPERAZIONE ERRORE_SENSORE=ERRORE_SENSORE VALVOLA_ACIDO=VALVOLA_ACIDO VALVOLA_BASICO=VALVOLA_BASICO START_datapath=START_datapath
 
 .search multiplexer/mux2i.blif
 .search costante/zero1b.blif
 .subckt zero1b O=zero
-.subckt mux2i S=FINE_OPERAZIONE A=zero A=zero A=zero A=zero A=zero A=zero A=zero A=zero B7=pH_datapath7 B6=pH_datapath6 B5=pH_datapath5 B4=pH_datapath4 B3=pH_datapath3 B2=pH_datapath2 B1=pH_datapath1 B0=pH_datapath0 O7=PH_FINALE7 O6=PH_FINALE6 O5=PH_FINALE5 O4=PH_FINALE4 O3=PH_FINALE3 O2=PH_FINALE2 O1=PH_FINALE1 O0=PH_FINALE0
-.subckt mux2i S=FINE_OPERAZIONE A=zero A=zero A=zero A=zero A=zero A=zero A=zero A=zero B7=NCLK_datapath7 B6=NCLK_datapath6 B5=NCLK_datapath5 B4=NCLK_datapath4 B3=NCLK_datapath3 B2=NCLK_datapath2 B1=NCLK_datapath1 B0=NCLK_datapath0 O7=NCLK7 O6=NCLK6 O5=NCLK5 O4=NCLK4 O3=NCLK3 O2=NCLK2 O1=NCLK1 O0=NCLK0
+.subckt mux2i S=FINE_OPERAZIONE A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=pH_datapath7 B6=pH_datapath6 B5=pH_datapath5 B4=pH_datapath4 B3=pH_datapath3 B2=pH_datapath2 B1=pH_datapath1 B0=pH_datapath0 O7=PH_FINALE7 O6=PH_FINALE6 O5=PH_FINALE5 O4=PH_FINALE4 O3=PH_FINALE3 O2=PH_FINALE2 O1=PH_FINALE1 O0=PH_FINALE0
+.subckt mux2i S=FINE_OPERAZIONE A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=NCLK_datapath7 B6=NCLK_datapath6 B5=NCLK_datapath5 B4=NCLK_datapath4 B3=NCLK_datapath3 B2=NCLK_datapath2 B1=NCLK_datapath1 B0=NCLK_datapath0 O7=NCLK7 O6=NCLK6 O5=NCLK5 O4=NCLK4 O3=NCLK3 O2=NCLK2 O1=NCLK1 O0=NCLK0
 
 .end
