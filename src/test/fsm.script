@@ -1,0 +1,45 @@
+read_blif fsm.blif
+
+# inputs: RESET START pH7 Ph6 Ph5 Ph4 Ph3 Ph2 Ph1 Ph0 FINE_datapath
+# outputs: FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO STAR_datapath
+
+# Accendo il Circuito
+echo Accensione
+sim 1 0 0 0 0 0 0 0 0 0 0
+echo --------------------
+
+echo Ricevo in input una sostanza ACIDA
+sim 0 1 1 0 0 0 0 1 0 0 0
+echo --------------------
+
+
+# Il Data-Path comincia a elaborare il pH, attendo...
+sim 0 0 0 1 0 1 1 0 1 0 0
+echo Attendo il Data Path che elabori la sostanza...
+echo --------------------
+
+# Ho finito, passo allo stato FINE riportando i risultati
+echo Ho finito, passo allo stato FINE riportando i risultati
+sim 0 0 1 0 0 0 0 0 0 0 1
+echo --------------------
+
+# Dallo stato di Fine mi è chiesto di elaborare un altra sostanza
+echo Testo un nuovo pH dallo stato FINE
+sim 0 1 1 0 0 0 0 0 0 0 0
+echo --------------------
+
+
+# Ho finito, passo allo stato FINE riportando i risultati
+echo Ho finito, passo allo stato FINE riportando i risultati
+sim 0 1 1 0 0 0 0 0 0 0 1
+echo --------------------
+
+# Resetto il Circuito
+echo Resetto il Circuito
+sim 1 0 1 0 1 0 1 0 1 0 0
+echo --------------------
+
+# Inserisco un pH non valido
+echo Inserisco un pH non valido
+sim 0 1 1 1 1 0 0 1 0 1 1
+echo --------------------
