@@ -1,5 +1,5 @@
 .model datapath
-.inputs START VALVOLA_ACIDO VALVOLA_BASICO pH_in7 pH_in6 pH_in5 pH_in4 pH_in3 pH_in2 pH_in1 pH_in0
+.inputs START VALVOLA_ACIDO VALVOLA_BASICO pH_in7 pH_in6 pH_in5 pH_in4 pH_in3 pH_in2 pH_in1 pH_in0 DISPLAY
 .outputs FINE pH_out7 pH_out6 pH_out5 pH_out4 pH_out3 pH_out2 pH_out1 pH_out0 nclk_out7 nclk_out6 nclk_out5 nclk_out4 nclk_out3 nclk_out2 nclk_out1 nclk_out0
 
 # Importo il mux e la costante 0
@@ -14,8 +14,8 @@
 .search sottrattore/sottrattore.blif
 .search costante/mezzo.blif
 .subckt mezzo O7=mezzo7 O6=mezzo6 O5=mezzo5 O4=mezzo4 O3=mezzo3 O2=mezzo2 O1=mezzo1 O0=mezzo0
-.subckt sottrattore A7=pH_out7 A6=pH_out6 A5=pH_out5 A4=pH_out4 A3=pH_out3 A2=pH_out2 A1=pH_out1 A0=pH_out0 B7=mezzo7 B6=mezzo6 B5=mezzo5 B4=mezzo4 B3=mezzo3 B2=mezzo2 B1=mezzo1 B0=mezzo0 O7=acidificata7 O6=acidificata6 O5=acidificata5 O4=acidificata4 O3=acidificata3 O2=acidificata2 O1=acidificata1 O0=acidificata0
-.subckt mux2i S=VALVOLA_ACIDO A7=pH_out7 A6=pH_out6 A5=pH_out5 A4=pH_out4 A3=pH_out3 A2=pH_out2 A1=pH_out1 A0=pH_out0 B7=acidificata7 B6=acidificata6 B5=acidificata5 B4=acidificata4 B3=acidificata3 B2=acidificata2 B1=acidificata1 B0=acidificata0 O7=mux_acido7 O6=mux_acido6 O5=mux_acido5 O4=mux_acido4 O3=mux_acido3 O2=mux_acido2 O1=mux_acido1 O0=mux_acido0
+.subckt sottrattore A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=mezzo7 B6=mezzo6 B5=mezzo5 B4=mezzo4 B3=mezzo3 B2=mezzo2 B1=mezzo1 B0=mezzo0 O7=acidificata7 O6=acidificata6 O5=acidificata5 O4=acidificata4 O3=acidificata3 O2=acidificata2 O1=acidificata1 O0=acidificata0
+.subckt mux2i S=VALVOLA_ACIDO A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=acidificata7 B6=acidificata6 B5=acidificata5 B4=acidificata4 B3=acidificata3 B2=acidificata2 B1=acidificata1 B0=acidificata0 O7=mux_acido7 O6=mux_acido6 O5=mux_acido5 O4=mux_acido4 O3=mux_acido3 O2=mux_acido2 O1=mux_acido1 O0=mux_acido0
 
 # basifica
 .search sommatore/sommatore.blif
@@ -30,18 +30,18 @@
 .subckt registro I7=nuovo_pH7 I6=nuovo_pH6 I5=nuovo_pH5 I4=nuovo_pH4 I3=nuovo_pH3 I2=nuovo_pH2 I1=nuovo_pH1 I0=nuovo_pH0 O7=registro_pH7 O6=registro_pH6 O5=registro_pH5 O4=registro_pH4 O3=registro_pH3 O2=registro_pH2 O1=registro_pH1 O0=registro_pH0
 
 # Mux per start
-.subckt mux2i S=START A7=registro_pH7 A6=registro_pH6 A5=registro_pH5 A4=registro_pH4 A3=registro_pH3 A2=registro_pH2 A1=registro_pH1 A0=registro_pH0 B7=pH_in7 B6=pH_in6 B5=pH_in5 B4=pH_in4 B3=pH_in3 B2=pH_in2 B1=pH_in1 B0=pH_in0 O7=pH_out7 O6=pH_out6 O5=pH_out5 O4=pH_out4 O3=pH_out3 O2=pH_out2 O1=pH_out1 O0=pH_out0
+.subckt mux2i S=START A7=registro_pH7 A6=registro_pH6 A5=registro_pH5 A4=registro_pH4 A3=registro_pH3 A2=registro_pH2 A1=registro_pH1 A0=registro_pH0 B7=pH_in7 B6=pH_in6 B5=pH_in5 B4=pH_in4 B3=pH_in3 B2=pH_in2 B1=pH_in1 B0=pH_in0 O7=pH_finale7 O6=pH_finale6 O5=pH_finale5 O4=pH_finale4 O3=pH_finale3 O2=pH_finale2 O1=pH_finale1 O0=pH_finale0
 
 ## Controllo neutralita'
 .search comparatore/maggiore.blif
 .search costante/quasisette.blif
 .subckt quasisette O7=qsette7 O6=qsette6 O5=qsette5 O4=qsette4 O3=qsette3 O2=qsette2 O1=qsette1 O0=qsette0
-.subckt maggiore A7=pH_out7 A6=pH_out6 A5=pH_out5 A4=pH_out4 A3=pH_out3 A2=pH_out2 A1=pH_out1 A0=pH_out0 B7=qsette7 B6=qsette6 B5=qsette5 B4=qsette4 B3=qsette3 B2=qsette2 B1=qsette1 B0=qsette0 O=mag_uguale
+.subckt maggiore A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=qsette7 B6=qsette6 B5=qsette5 B4=qsette4 B3=qsette3 B2=qsette2 B1=qsette1 B0=qsette0 O=mag_uguale
 
 .search comparatore/minoreuguale.blif
 .search costante/otto.blif
 .subckt otto O7=otto7 O6=otto6 O5=otto5 O4=otto4 O3=otto3 O2=otto2 O1=otto1 O0=otto0
-.subckt minoreuguale A7=pH_out7 A6=pH_out6 A5=pH_out5 A4=pH_out4 A3=pH_out3 A2=pH_out2 A1=pH_out1 A0=pH_out0 B7=otto7 B6=otto6 B5=otto5 B4=otto4 B3=otto3 B2=otto2 B1=otto1 B0=otto0 O=min_uguale
+.subckt minoreuguale A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=otto7 B6=otto6 B5=otto5 B4=otto4 B3=otto3 B2=otto2 B1=otto1 B0=otto0 O=min_uguale
 
 .search base/and1b.blif
 .subckt and1b A=min_uguale B=mag_uguale O=FINE
@@ -49,14 +49,17 @@
 
 ## Contatore cicli clock
 .search sommatore/sommatore.blif
-.subckt sommatore CIN=zero A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=uno B7=nclk_out7 B6=nclk_out6 B5=nclk_out5 B4=nclk_out4 B3=nclk_out3 B2=nclk_out2 B1=nclk_out1 B0=nclk_out0 O7=nuovo_NCLK7 O6=nuovo_NCLK6 O5=nuovo_NCLK5 O4=nuovo_NCLK4 O3=nuovo_NCLK3 O2=nuovo_NCLK2 O1=nuovo_NCLK1 O0=nuovo_NCLK0
+.subckt sommatore CIN=zero A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=uno B7=nclk_finale7 B6=nclk_finale6 B5=nclk_finale5 B4=nclk_finale4 B3=nclk_finale3 B2=nclk_finale2 B1=nclk_finale1 B0=nclk_finale0 O7=nuovo_NCLK7 O6=nuovo_NCLK6 O5=nuovo_NCLK5 O4=nuovo_NCLK4 O3=nuovo_NCLK3 O2=nuovo_NCLK2 O1=nuovo_NCLK1 O0=nuovo_NCLK0
 
-.subckt mux2i S=FINE A7=nuovo_NCLK7 A6=nuovo_NCLK6 A5=nuovo_NCLK5 A4=nuovo_NCLK4 A3=nuovo_NCLK3 A2=nuovo_NCLK2 A1=nuovo_NCLK1 A0=nuovo_NCLK0 B7=nclk_out7 B6=nclk_out6 B5=nclk_out5 B4=nclk_out4 B3=nclk_out3 B2=nclk_out2 B1=nclk_out1 B0=nclk_out0  O7=mux_fine_nclk7 O6=mux_fine_nclk6 O5=mux_fine_nclk5 O4=mux_fine_nclk4 O3=mux_fine_nclk3 O2=mux_fine_nclk2 O1=mux_fine_nclk1 O0=mux_fine_nclk0
+.subckt mux2i S=FINE A7=nuovo_NCLK7 A6=nuovo_NCLK6 A5=nuovo_NCLK5 A4=nuovo_NCLK4 A3=nuovo_NCLK3 A2=nuovo_NCLK2 A1=nuovo_NCLK1 A0=nuovo_NCLK0 B7=nclk_finale7 B6=nclk_finale6 B5=nclk_finale5 B4=nclk_finale4 B3=nclk_finale3 B2=nclk_finale2 B1=nclk_finale1 B0=nclk_finale0  O7=mux_fine_nclk7 O6=mux_fine_nclk6 O5=mux_fine_nclk5 O4=mux_fine_nclk4 O3=mux_fine_nclk3 O2=mux_fine_nclk2 O1=mux_fine_nclk1 O0=mux_fine_nclk0
 
 .search registro/registro.blif
 .subckt registro I7=mux_fine_nclk7 I6=mux_fine_nclk6 I5=mux_fine_nclk5 I4=mux_fine_nclk4 I3=mux_fine_nclk3 I2=mux_fine_nclk2 I1=mux_fine_nclk1 I0=mux_fine_nclk0 O7=registro_nclk7 O6=registro_nclk6 O5=registro_nclk5 O4=registro_nclk4 O3=registro_nclk3 O2=registro_nclk2 O1=registro_nclk1 O0=registro_nclk0
 
-.subckt mux2i S=START A7=registro_nclk7 A6=registro_nclk6 A5=registro_nclk5 A4=registro_nclk4 A3=registro_nclk3 A2=registro_nclk2 A1=registro_nclk1 A0=registro_nclk0 B7=zero B6=zero B5=zero B4=zero B3=zero B2=zero B1=zero B0=zero O7=nclk_out7 O6=nclk_out6 O5=nclk_out5 O4=nclk_out4 O3=nclk_out3 O2=nclk_out2 O1=nclk_out1 O0=nclk_out0
+.subckt mux2i S=START A7=registro_nclk7 A6=registro_nclk6 A5=registro_nclk5 A4=registro_nclk4 A3=registro_nclk3 A2=registro_nclk2 A1=registro_nclk1 A0=registro_nclk0 B7=zero B6=zero B5=zero B4=zero B3=zero B2=zero B1=zero B0=zero O7=nclk_finale7 O6=nclk_finale6 O5=nclk_finale5 O4=nclk_finale4 O3=nclk_finale3 O2=nclk_finale2 O1=nclk_finale1 O0=nclk_finale0
 ## Fine contatore
+
+.subckt mux2i S=DISPLAY A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=pH_finale7 B6=pH_finale6 B5=pH_finale5 B4=pH_finale4 B3=pH_finale3 B2=pH_finale2 B1=pH_finale1 B0=pH_finale0 O7=pH_out7 O6=pH_out6 O5=pH_out5 O4=pH_out4 O3=pH_out3 O2=pH_out2 O1=pH_out1 O0=pH_out0
+.subckt mux2i S=DISPLAY A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=nclk_finale7 B6=nclk_finale6 B5=nclk_finale5 B4=nclk_finale4 B3=nclk_finale3 B2=nclk_finale2 B1=nclk_finale1 B0=nclk_finale0 O7=nclk_out7 O6=nclk_out6 O5=nclk_out5 O4=nclk_out4 O3=nclk_out3 O2=nclk_out2 O1=nclk_out1 O0=nclk_out0
 
 .end
