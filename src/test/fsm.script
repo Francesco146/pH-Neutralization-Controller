@@ -8,7 +8,7 @@ echo Accensione
 sim 1 0 0 0 0 0 0 0 0 0 0
 echo --------------------
 
-echo Ricevo in input una sostanza ACIDA
+echo Ricevo in input una sostanza BASICA
 sim 0 1 1 0 0 0 0 1 0 0 0
 echo --------------------
 
