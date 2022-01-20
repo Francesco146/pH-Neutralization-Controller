@@ -1,0 +1,241 @@
+.model FSMD
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0
+.outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO \
+PH_FINALE7 PH_FINALE6 PH_FINALE5 PH_FINALE4 PH_FINALE3 PH_FINALE2 PH_FINALE1 \
+PH_FINALE0 NCLK7 NCLK6 NCLK5 NCLK4 NCLK3 NCLK2 NCLK1 NCLK0
+.latch    [5] LatchOut_v11   1
+.latch    [6] LatchOut_v12   0
+.latch    [7] LatchOut_v13   1
+.latch    nuovo_pH7 registro_pH7 re NIL 0
+.latch    nuovo_pH6 registro_pH6 re NIL 0
+.latch    nuovo_pH5 registro_pH5 re NIL 0
+.latch    nuovo_pH4 registro_pH4 re NIL 0
+.latch    nuovo_pH3 registro_pH3 re NIL 0
+.latch    nuovo_pH2 registro_pH2 re NIL 0
+.latch    pH_finale1 registro_pH1 re NIL 0
+.latch    pH_finale0 registro_pH0 re NIL 0
+.latch    mux_fine_nclk7 registro_nclk7 re NIL 0
+.latch    mux_fine_nclk6 registro_nclk6 re NIL 0
+.latch    mux_fine_nclk5 registro_nclk5 re NIL 0
+.latch    mux_fine_nclk4 registro_nclk4 re NIL 0
+.latch    mux_fine_nclk3 registro_nclk3 re NIL 0
+.latch    mux_fine_nclk2 registro_nclk2 re NIL 0
+.latch    mux_fine_nclk1 registro_nclk1 re NIL 0
+.latch    mux_fine_nclk0 registro_nclk0 re NIL 0
+.names RST VALVOLA_BASICO FINE_datapath LatchOut_v11 LatchOut_v12 LatchOut_v13 \
+[595] [761] [765] FINE_OPERAZIONE
+--1---11- 1
+--10----1 1
+-0----0-1 1
+0-1111--- 1
+.names RST LatchOut_v11 LatchOut_v13 [595] [618] ERRORE_SENSORE
+---10 1
+001-- 1
+.names RST START pH7 FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_BASICO \
+LatchOut_v12 [618] VALVOLA_ACIDO
+0--0001- 1
+0110--01 1
+.names pH7 FINE_datapath LatchOut_v11 [595] [765] VALVOLA_BASICO
+00-1- 1
+-00-1 1
+.names FINE_OPERAZIONE pH_finale7 PH_FINALE7
+11 1
+.names FINE_OPERAZIONE pH_finale6 PH_FINALE6
+11 1
+.names FINE_OPERAZIONE pH_finale5 PH_FINALE5
+11 1
+.names FINE_OPERAZIONE pH_finale4 PH_FINALE4
+11 1
+.names FINE_OPERAZIONE pH_finale3 PH_FINALE3
+11 1
+.names FINE_OPERAZIONE pH_finale2 PH_FINALE2
+11 1
+.names FINE_OPERAZIONE pH_finale1 PH_FINALE1
+11 1
+.names FINE_OPERAZIONE pH_finale0 PH_FINALE0
+11 1
+.names registro_nclk7 [588] NCLK7
+11 1
+.names registro_nclk6 [588] NCLK6
+11 1
+.names registro_nclk5 [588] NCLK5
+11 1
+.names registro_nclk4 [588] NCLK4
+11 1
+.names registro_nclk3 [588] NCLK3
+11 1
+.names registro_nclk2 [588] NCLK2
+11 1
+.names registro_nclk1 [588] NCLK1
+11 1
+.names registro_nclk0 [588] NCLK0
+11 1
+.names [595] [618] START_datapath
+11 1
+.names pH_finale7 pH_finale6 pH_finale5 pH_finale4 pH_finale2 pH_finale1 \
+pH_finale0 [763] FINE_datapath
+0111---- 1
+100-0000 1
+.names FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO [766] [5]
+1---- 1
+--1-- 1
+----0 1
+-0-0- 1
+.names RST ERRORE_SENSORE [765] [766] [6]
+-1-- 1
+--1- 1
+0--1 1
+.names FINE_OPERAZIONE ERRORE_SENSORE [5] [766] [7]
+-1-- 1
+---0 1
+0-1- 1
+.names START_datapath registro_pH7 pH7 pH_finale7
+01- 1
+1-1 1
+.names START_datapath registro_pH6 pH6 pH_finale6
+01- 1
+1-1 1
+.names START_datapath registro_pH5 pH5 pH_finale5
+01- 1
+1-1 1
+.names START_datapath registro_pH4 pH4 pH_finale4
+01- 1
+1-1 1
+.names START_datapath registro_pH3 pH3 pH_finale3
+01- 1
+1-1 1
+.names START_datapath registro_pH2 pH2 pH_finale2
+01- 1
+1-1 1
+.names START_datapath registro_pH1 pH1 pH_finale1
+01- 1
+1-1 1
+.names START_datapath registro_pH0 pH0 pH_finale0
+01- 1
+1-1 1
+.names pH_finale7 [768] mux_acido7
+11 1
+00 1
+.names pH_finale6 [769] mux_acido6
+11 1
+00 1
+.names pH_finale5 [778] mux_acido5
+11 1
+00 1
+.names pH_finale4 pH_finale3 mux_acido3 [763] mux_acido4
+11-- 1
+1-0- 1
+--10 1
+.names VALVOLA_ACIDO pH_finale3 mux_acido3
+01 1
+10 1
+.names mux_acido7 [770] nuovo_pH7
+11 1
+00 1
+.names mux_acido6 [771] nuovo_pH6
+11 1
+00 1
+.names mux_acido5 [772] nuovo_pH5
+11 1
+00 1
+.names mux_acido4 [773] nuovo_pH4
+11 1
+00 1
+.names mux_acido3 [774] nuovo_pH3
+11 1
+00 1
+.names VALVOLA_BASICO pH_finale2 nuovo_pH2
+01 1
+10 1
+.names registro_nclk3 registro_nclk2 registro_nclk1 [764] [128]
+1110 1
+.names START_datapath registro_nclk7 registro_nclk6 mux_fine_nclk6 \
+mux_fine_nclk7
+-1-1 1
+010- 1
+0010 1
+.names START_datapath registro_nclk6 registro_nclk5 mux_fine_nclk5 \
+mux_fine_nclk6
+-1-1 1
+010- 1
+0010 1
+.names START_datapath registro_nclk5 registro_nclk4 mux_fine_nclk4 [762] \
+mux_fine_nclk5
+-1-1- 1
+010-- 1
+-0-00 1
+.names [762] [775] mux_fine_nclk4
+01 1
+10 1
+.names START_datapath registro_nclk3 registro_nclk2 [128] mux_fine_nclk2 \
+mux_fine_nclk0 mux_fine_nclk3
+---1-1 1
+01-0-- 1
+0-100- 1
+.names START_datapath FINE_datapath registro_nclk2 registro_nclk1 \
+mux_fine_nclk1 mux_fine_nclk0 mux_fine_nclk2
+--1-1- 1
+0-10-- 1
+-001-0 1
+.names START_datapath FINE_datapath registro_nclk1 registro_nclk0 [764] \
+mux_fine_nclk1
+011-- 1
+0-10- 1
+-00-0 1
+.names FINE_datapath [764] mux_fine_nclk0
+01 1
+10 1
+.names FINE_OPERAZIONE START_datapath [588]
+10 1
+.names RST START LatchOut_v11 LatchOut_v12 [765] [595]
+01-0- 1
+-11-1 1
+.names pH6 pH5 [761] [618]
+0-- 1
+-0- 1
+--1 1
+.names pH7 pH4 pH3 pH2 pH1 pH0 [761]
+0----- 1
+-00000 1
+.names START_datapath registro_nclk4 [762]
+1- 1
+-0 1
+.names pH_finale4 pH_finale3 [763]
+1- 1
+-1 1
+.names START_datapath registro_nclk0 [764]
+1- 1
+-0 1
+.names RST LatchOut_v13 [765]
+00 1
+.names START LatchOut_v12 [766]
+1- 1
+-1 1
+.names pH_finale6 mux_acido6 [768]
+1- 1
+-0 1
+.names pH_finale5 mux_acido5 [769]
+1- 1
+-0 1
+.names mux_acido6 nuovo_pH6 [770]
+0- 1
+-1 1
+.names mux_acido5 nuovo_pH5 [771]
+0- 1
+-1 1
+.names mux_acido4 nuovo_pH4 [772]
+0- 1
+-1 1
+.names mux_acido3 nuovo_pH3 [773]
+0- 1
+-1 1
+.names VALVOLA_BASICO pH_finale2 [774]
+0- 1
+-0 1
+.names FINE_datapath [128] [775]
+1- 1
+-0 1
+.names VALVOLA_ACIDO [763] [778]
+0- 1
+-1 1
+.end
