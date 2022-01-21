@@ -1,0 +1,17 @@
+# Multiplexer 2 ingressi da 1 bit
+
+.model mux3i1b
+.inputs S1 S0 I2 I1 I0
+.outputs O
+
+# Quando S = 0, uscita I1, altrimenti I0
+.names S1 S0 I2 I1 I0 O
+00--1 1
+01-1- 1
+101-- 1
+
+.exdc
+.names S1 S0 I2 I1 I0 O
+11--- 1
+
+.end

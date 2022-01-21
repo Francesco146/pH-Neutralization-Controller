@@ -1,0 +1,20 @@
+# Multiplexer 3 ingressi da 8 bit
+
+.model mux3i
+.inputs S1 S0 A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 C7 C6 C5 C4 C3 C2 C1 C0
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+# Importa il multiplexer per 2 ingressi da 1 bit l'uno
+.search multiplexer/mux3i1b.blif
+
+# Usa 8 multiplexer in parallelo
+.subckt mux3i1b S1=S1 S0=S0 I2=C7 I1=B7 I0=A7 O=O7
+.subckt mux3i1b S1=S1 S0=S0 I2=C6 I1=B6 I0=A6 O=O6
+.subckt mux3i1b S1=S1 S0=S0 I2=C5 I1=B5 I0=A5 O=O5
+.subckt mux3i1b S1=S1 S0=S0 I2=C4 I1=B4 I0=A4 O=O4
+.subckt mux3i1b S1=S1 S0=S0 I2=C3 I1=B3 I0=A3 O=O3
+.subckt mux3i1b S1=S1 S0=S0 I2=C2 I1=B2 I0=A2 O=O2
+.subckt mux3i1b S1=S1 S0=S0 I2=C1 I1=B1 I0=A1 O=O1
+.subckt mux3i1b S1=S1 S0=S0 I2=C0 I1=B0 I0=A0 O=O0
+
+.end

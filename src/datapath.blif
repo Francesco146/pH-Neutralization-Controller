@@ -15,14 +15,15 @@
 .search costante/mezzo.blif
 .subckt mezzo O7=mezzo7 O6=mezzo6 O5=mezzo5 O4=mezzo4 O3=mezzo3 O2=mezzo2 O1=mezzo1 O0=mezzo0
 .subckt sottrattore A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=mezzo7 B6=mezzo6 B5=mezzo5 B4=mezzo4 B3=mezzo3 B2=mezzo2 B1=mezzo1 B0=mezzo0 O7=acidificata7 O6=acidificata6 O5=acidificata5 O4=acidificata4 O3=acidificata3 O2=acidificata2 O1=acidificata1 O0=acidificata0
-.subckt mux2i S=VALVOLA_ACIDO A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=acidificata7 B6=acidificata6 B5=acidificata5 B4=acidificata4 B3=acidificata3 B2=acidificata2 B1=acidificata1 B0=acidificata0 O7=mux_acido7 O6=mux_acido6 O5=mux_acido5 O4=mux_acido4 O3=mux_acido3 O2=mux_acido2 O1=mux_acido1 O0=mux_acido0
 
 # basifica
 .search sommatore/sommatore.blif
 .search costante/quarto.blif
 .subckt quarto O7=quarto7 O6=quarto6 O5=quarto5 O4=quarto4 O3=quarto3 O2=quarto2 O1=quarto1 O0=quarto0
-.subckt sommatore CIN=zero A7=mux_acido7 A6=mux_acido6 A5=mux_acido5 A4=mux_acido4 A3=mux_acido3 A2=mux_acido2 A1=mux_acido1 A0=mux_acido0 B7=quarto7 B6=quarto6 B5=quarto5 B4=quarto4 B3=quarto3 B2=quarto2 B1=quarto1 B0=quarto0 O7=basificata7 O6=basificata6 O5=basificata5 O4=basificata4 O3=basificata3 O2=basificata2 O1=basificata1 O0=basificata0
-.subckt mux2i S=VALVOLA_BASICO A7=mux_acido7 A6=mux_acido6 A5=mux_acido5 A4=mux_acido4 A3=mux_acido3 A2=mux_acido2 A1=mux_acido1 A0=mux_acido0 B7=basificata7 B6=basificata6 B5=basificata5 B4=basificata4 B3=basificata3 B2=basificata2 B1=basificata1 B0=basificata0 O7=nuovo_pH7 O6=nuovo_pH6 O5=nuovo_pH5 O4=nuovo_pH4 O3=nuovo_pH3 O2=nuovo_pH2 O1=nuovo_pH1 O0=nuovo_pH0
+.subckt sommatore CIN=zero A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=quarto7 B6=quarto6 B5=quarto5 B4=quarto4 B3=quarto3 B2=quarto2 B1=quarto1 B0=quarto0 O7=basificata7 O6=basificata6 O5=basificata5 O4=basificata4 O3=basificata3 O2=basificata2 O1=basificata1 O0=basificata0
+
+.search multiplexer/mux3i.blif
+.subckt mux3i S1=VALVOLA_ACIDO S0=VALVOLA_BASICO A7=pH_finale7 A6=pH_finale6 A5=pH_finale5 A4=pH_finale4 A3=pH_finale3 A2=pH_finale2 A1=pH_finale1 A0=pH_finale0 B7=basificata7 B6=basificata6 B5=basificata5 B4=basificata4 B3=basificata3 B2=basificata2 B1=basificata1 B0=basificata0 C7=acidificata7 C6=acidificata6 C5=acidificata5 C4=acidificata4 C3=acidificata3 C2=acidificata2 C1=acidificata1 C0=acidificata0 O7=nuovo_pH7 O6=nuovo_pH6 O5=nuovo_pH5 O4=nuovo_pH4 O3=nuovo_pH3 O2=nuovo_pH2 O1=nuovo_pH1 O0=nuovo_pH0
 ## Fine sezione
 
 # Registro che memorizza il pH
