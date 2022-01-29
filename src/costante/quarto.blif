@@ -5,11 +5,11 @@
 .search costante/zero1b.blif
 .search costante/uno1b.blif
 
-.subckt zero1b O=O7 
-.subckt zero1b O=O6
-.subckt zero1b O=O5
-.subckt zero1b O=O4
-.subckt zero1b O=O3
+.subckt uno1b O=O7 
+.subckt uno1b O=O6
+.subckt uno1b O=O5
+.subckt uno1b O=O4
+.subckt uno1b O=O3
 .subckt uno1b O=O2
 .subckt zero1b O=O1
 .subckt zero1b O=O0

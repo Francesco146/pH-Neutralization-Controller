@@ -1,47 +1,28 @@
 .model fsm
 .inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath
-.outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO START_datapath
-
+.outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO \
+START_datapath
+.latch    [5] LatchOut_v11   1
+.latch    [6] LatchOut_v12   0
+.latch    [7] LatchOut_v13   1
 .start_kiss
 .i 11
 .o 5
+.p 48
 .s 5
-.p 51
 .r RESET
-
-# Da RESET a RESET
 1---------- RESET RESET 0000-
 00--------- RESET RESET 0000-
-
-# Da RESET a ERRORE
 0111100001- RESET ERRORE 0100-
 011110001-- RESET ERRORE 0100-
 01111001--- RESET ERRORE 0100-
 0111101---- RESET ERRORE 0100-
 011111----- RESET ERRORE 0100-
-
-# Da ERRORE a ERRORE
-0---------- ERRORE ERRORE 0100-
-
-# Da ERRORE a RESET
-1---------- ERRORE RESET 0000-
-
-# Da RESET a ACIDO
 0100------- RESET ACIDO 00011
 01010------ RESET ACIDO 00011
 010110----- RESET ACIDO 00011
-
-# Da ACIDO a RESET
-1---------- ACIDO RESET 0000-
-
-# Da ACIDO a ACIDO
-0---------0 ACIDO ACIDO 00010
-
-# Da RESET a FINE
 010111----- RESET FINE 10001
 0110000000- RESET FINE 10001
-
-# Da RESET a BASICO
 0110000001- RESET BASICO 00101
 011000001-- RESET BASICO 00101
 01100001--- RESET BASICO 00101
@@ -50,25 +31,14 @@
 01101------ RESET BASICO 00101
 01110------ RESET BASICO 00101
 0111100000- RESET BASICO 00101
-
-# Da BASICO a RESET
-1---------- BASICO RESET 0000-
-
-# Da BASICO a BASICO
-0---------0 BASICO BASICO 00100
-
-# Da ACIDO a FINE
+0---------- ERRORE ERRORE 0100-
+1---------- ERRORE RESET 0000-
+1---------- ACIDO RESET 0000-
+0---------0 ACIDO ACIDO 00010
 0---------1 ACIDO FINE 10000
-
-# Da BASICO a FINE
-0---------1 BASICO FINE 10000
-
-# Da FINE a ACIDO
 0100------- FINE ACIDO 00011
 01010------ FINE ACIDO 00011
 010110----- FINE ACIDO 00011
-
-# Da FINE a BASICO
 0110000001- FINE BASICO 00101
 011000001-- FINE BASICO 00101
 01100001--- FINE BASICO 00101
@@ -77,22 +47,238 @@
 01101------ FINE BASICO 00101
 01110------ FINE BASICO 00101
 0111100000- FINE BASICO 00101
-
-# Da FINE a ERRORE
 0111100001- FINE ERRORE 0100-
 011110001-- FINE ERRORE 0100-
 01111001--- FINE ERRORE 0100-
 0111101---- FINE ERRORE 0100-
 011111----- FINE ERRORE 0100-
-
-# Da FINE a FINE
 00--------- FINE FINE 10000
 010111----- FINE FINE 10001
 0110000000- FINE FINE 10001
-
-# Da FINE a RESET
 1---------- FINE RESET 0000-
-
+1---------- BASICO RESET 0000-
+0---------0 BASICO BASICO 00100
+0---------1 BASICO FINE 10000
 .end_kiss
-
+.latch_order LatchOut_v11 LatchOut_v12 LatchOut_v13
+.code RESET 101
+.code ERRORE 011
+.code ACIDO 010
+.code FINE 110
+.code BASICO 111
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13 [5]
+1------------- 1
+-0----------0- 1
+00---------1-0 1
+0---------10-0 1
+0---------1111 1
+0---------0111 1
+01101-------0- 1
+011-01------0- 1
+011-0-1-----0- 1
+011-0--1----0- 1
+011-0---1---0- 1
+011-0----1--0- 1
+010111------0- 1
+01101------1-0 1
+011-01-----1-0 1
+011-0-1----1-0 1
+011-0--1---1-0 1
+011-0---1--1-0 1
+011-0----1-1-0 1
+010111-----1-0 1
+0111-00000--0- 1
+0110000000--0- 1
+0111-00000-1-0 1
+0110000000-1-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13 [6]
+0----------0-1 1
+00---------1-0 1
+0---------10-0 1
+0---------00-0 1
+0100--------0- 1
+010-0-------0- 1
+010--0------0- 1
+0---------1111 1
+0---------0111 1
+01101-------0- 1
+011-01------0- 1
+011-0-1-----0- 1
+011-0--1----0- 1
+011-0---1---0- 1
+011-0----1--0- 1
+0100-------1-0 1
+010-0------1-0 1
+010--0-----1-0 1
+011111------0- 1
+010111------0- 1
+01111-1-----0- 1
+01111--1----0- 1
+01111---1---0- 1
+01111----1--0- 1
+01101------1-0 1
+011-01-----1-0 1
+011-0-1----1-0 1
+011-0--1---1-0 1
+011-0---1--1-0 1
+011-0----1-1-0 1
+011111-----1-0 1
+010111-----1-0 1
+01111-1----1-0 1
+01111--1---1-0 1
+01111---1--1-0 1
+01111----1-1-0 1
+0111-00000--0- 1
+0110000000--0- 1
+0111-00000-1-0 1
+0110000000-1-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13 [7]
+1------------- 1
+-0----------0- 1
+0----------0-1 1
+0---------0111 1
+01101-------0- 1
+011-01------0- 1
+011-0-1-----0- 1
+011-0--1----0- 1
+011-0---1---0- 1
+011-0----1--0- 1
+011111------0- 1
+01111-1-----0- 1
+01111--1----0- 1
+01111---1---0- 1
+01111----1--0- 1
+01101------1-0 1
+011-01-----1-0 1
+011-0-1----1-0 1
+011-0--1---1-0 1
+011-0---1--1-0 1
+011-0----1-1-0 1
+011111-----1-0 1
+01111-1----1-0 1
+01111--1---1-0 1
+01111---1--1-0 1
+01111----1-1-0 1
+0111-00000--0- 1
+0111-00000-1-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13 FINE_OPERAZIONE
+00---------1-0 1
+0---------10-0 1
+0---------1111 1
+010111------0- 1
+010111-----1-0 1
+0110000000--0- 1
+0110000000-1-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 LatchOut_v11 LatchOut_v12 \
+LatchOut_v13 ERRORE_SENSORE
+0---------0-1 1
+011111-----0- 1
+01111-1----0- 1
+01111--1---0- 1
+01111---1--0- 1
+01111----1-0- 1
+011111----1-0 1
+01111-1---1-0 1
+01111--1--1-0 1
+01111---1-1-0 1
+01111----11-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13 VALVOLA_ACIDO
+0---------0111 1
+01101-------0- 1
+011-01------0- 1
+011-0-1-----0- 1
+011-0--1----0- 1
+011-0---1---0- 1
+011-0----1--0- 1
+01101------1-0 1
+011-01-----1-0 1
+011-0-1----1-0 1
+011-0--1---1-0 1
+011-0---1--1-0 1
+011-0----1-1-0 1
+0111-00000--0- 1
+0111-00000-1-0 1
+.names RST START pH7 pH6 pH5 pH4 FINE_datapath LatchOut_v11 LatchOut_v12 \
+LatchOut_v13 VALVOLA_BASICO
+0-----00-0 1
+0100----0- 1
+010-0---0- 1
+010--0--0- 1
+0100---1-0 1
+010-0--1-0 1
+010--0-1-0 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 LatchOut_v11 LatchOut_v12 \
+LatchOut_v13 START_datapath
+0100-------0- 1
+010-0------0- 1
+010--0-----0- 1
+01101------0- 1
+011-01-----0- 1
+011-0-1----0- 1
+011-0--1---0- 1
+011-0---1--0- 1
+011-0----1-0- 1
+0100------1-0 1
+010-0-----1-0 1
+010--0----1-0 1
+010111-----0- 1
+01101-----1-0 1
+011-01----1-0 1
+011-0-1---1-0 1
+011-0--1--1-0 1
+011-0---1-1-0 1
+011-0----11-0 1
+010111----1-0 1
+0111-00000-0- 1
+0110000000-0- 1
+0111-000001-0 1
+01100000001-0 1
+.exdc 
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 FINE_datapath LatchOut_v11 \
+LatchOut_v12 LatchOut_v13
+.outputs [5] [6] [7] FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO \
+VALVOLA_BASICO START_datapath
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 [5]
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 [6]
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 [7]
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 FINE_OPERAZIONE
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 ERRORE_SENSORE
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 VALVOLA_ACIDO
+00- 1
+-00 1
+.names LatchOut_v11 LatchOut_v12 LatchOut_v13 VALVOLA_BASICO
+00- 1
+-00 1
+.names RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 LatchOut_v11 LatchOut_v12 \
+LatchOut_v13 START_datapath
+1------------ 1
+-0---------0- 1
+----------00- 1
+----------0-1 1
+-----------00 1
+--1111-----0- 1
+--111-1----0- 1
+--111--1---0- 1
+--111---1--0- 1
+--111----1-0- 1
+-11111----1-0 1
+-1111-1---1-0 1
+-1111--1--1-0 1
+-1111---1-1-0 1
+-1111----11-0 1
 .end
