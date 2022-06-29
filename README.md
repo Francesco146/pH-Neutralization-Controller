@@ -157,3 +157,7 @@ Il `total gate area` (area) è 5960.00 mentre l’`arrival time` (cammino critic
 
 <img src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image12.png?raw=true" width="600" height="200">
 
+### Note
+Directory del progetto:
+- `doc`: relazione dell'elaborato
+- `src`: componenti non ottimizzati
