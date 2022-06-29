@@ -11,7 +11,7 @@
 5. [Statistiche del circuito](#Statistiche-del-circuito)
    - [Prima dell’ottimizzazione](#Prima-dell’ottimizzazione)
    - [Dopo l’ottimizzazione](#Dopo-l’ottimizzazione)
-6. [Mapping: gate e ritardi](#Mapping:-gate-e-ritardi)
+6. [Mapping: gate e ritardi](#Mapping-gate-e-ritardi)
 7. [Scelte progettuali](#Scelte-progettuali)
 
 
@@ -113,7 +113,7 @@ Le componenti utilizzate sono:
 - Un SOMMATORE e un SOTTRATTORE: questi due circuiti hanno il compito di sommare 0.25 unità di pH o sottrarre 0.5 unità di pH dal valore pH in ingresso.
 - Un MULTIPLEXER (`MUX_PH_DIPLAY`): serve a mostrare il risultato. Il selettore è il bit `FINE_OPERAZIONE` proveniente dalla FSM.
 
-<img align="left" src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image9.png?raw=true" width="620" height="900">
+<img src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image9.png?raw=true" width="620" height="900">
 
 
 ### Contatore dei cicli di clock
@@ -139,11 +139,11 @@ L’ottimizzazione è stata eseguita lanciando tre volte il comando `source scri
 - Numero di nodi: 71
 - Numero di letterali: 282
 
-## Mapping: gate e ritardi
+## Mapping gate e ritardi
 Dopo aver ottimizzato il circuito lo si mappa così da visualizzare le statistiche verosimili riguardo area e ritardo. È stata assegnata la libreria `synch.genlib`.
 Il circuito mappato presenta le seguenti statistiche:
 
-<img align="left" src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image11.png?raw=true" width="520" height="600">
+<img src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image11.png?raw=true" width="520" height="600">
 
 
 Il `total gate area` (area) è 5960.00 mentre l’`arrival time` (cammino critico) è 49.80. 
