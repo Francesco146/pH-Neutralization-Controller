@@ -9,8 +9,8 @@
    - [Elaboratore del valore di pH](#Elaboratore-del-valore-di-pH)
    - [Contatore dei cicli di clock](#Contatore-dei-cicli-di-clock)
 5. [Statistiche del circuito](#Statistiche-del-circuito)
-   - [Prima dell’ottimizzazione](#Prima-dell’ottimizzazione)
-   - [Dopo l’ottimizzazione](#Dopo-l’ottimizzazione)
+   - [Prima dell’ottimizzazione](#Prima-ottimizzazione)
+   - [Dopo l’ottimizzazione](#Dopo-ottimizzazione)
 6. [Mapping: gate e ritardi](#Mapping-gate-e-ritardi)
 7. [Scelte progettuali](#Scelte-progettuali)
 
@@ -126,14 +126,14 @@ Le componenti utilizzate sono:
 
 
 ## Statistiche del circuito
-### Prima dell’ottimizzazione
+### Prima ottimizzazione
 Le statistiche del circuito prima di effettuare l’ottimizzazione indicano:
 
 <img src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image7.png?raw=true" width="600" height="100">
 
 - Numero di nodi: 224
 - Numero di letterali: 1888
-### Dopo l’ottimizzazione
+### Dopo ottimizzazione
 L’ottimizzazione è stata eseguita lanciando tre volte il comando `source script.rugged` che permette la distruzione e ricostruzione della FSMD.
 <img src="https://github.com/Francesco146/elaborato-sis/blob/main/images/image8.png?raw=true" width="600" height="250">
 - Numero di nodi: 71
